@@ -1,7 +1,7 @@
 {
-  "name": "template_webpack",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "A template using webpack with npm, eslint(airbnb guide, JSCommon), and prettier.",
+  "description": "A weather app created with JS, HTML, and CSS",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
