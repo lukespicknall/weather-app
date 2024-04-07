@@ -1,15 +1,18 @@
 import './style.css';
+import load from './ui';
 
 const content = document.getElementById('content');
 
-const templatePage = document.createElement('div');
-templatePage.id = 'template-page';
+load();
 
-const templateText = document.createElement('div');
-templateText.id = 'template-text';
-templateText.textContent = 'TEMPLATE';
+// const templatePage = document.createElement('div');
+// templatePage.id = 'template-page';
 
-templatePage.appendChild(templateText);
-content.appendChild(templatePage);
+// const templateText = document.createElement('div');
+// templateText.id = 'template-text';
+// templateText.textContent = 'TEMPLATE';
 
-console.log('hey earth');
+// templatePage.appendChild(templateText);
+// content.appendChild(templatePage);
+
+// console.log('hey earth');
