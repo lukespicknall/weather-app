@@ -2,38 +2,65 @@ import getWeather from './retrieve';
 
 // factory function to create object with only the weather data we are intereted in from fetch
 const Weather = (
-  condition,
+  city,
+  dateTime,
   tempC,
   tempF,
-  humidity,
-  windMph,
+  feelsLikeC,
+  feelsLikeF,
+  highC,
+  lowC,
+  highF,
+  lowF,
   sunrise,
   sunset,
-  chanceRain,
   moon,
+  condition,
+  chanceRain,
+  humidity,
+  windMph,
+  windDirection,
   icon,
 ) => {
-  const currentCondition = condition;
+  const currentCity = city;
+  const currentDateTime = dateTime;
   const currentTempC = tempC;
   const currentTempF = tempF;
-  const currentHumidity = humidity;
-  const currentWindMph = windMph;
+  const currentFeelsLikeC = feelsLikeC;
+  const currentFeelsLikeF = feelsLikeF;
+  const currentHighC = highC;
+  const currentLowC = lowC;
+  const currentHighF = highF;
+  const currentLowF = lowF;
   const currentSunrise = sunrise;
   const currentSunset = sunset;
-  const currentChanceRain = chanceRain;
   const currentMoon = moon;
+  const currentCondition = condition;
+  const currentChanceRain = chanceRain;
+  const currentHumidity = humidity;
+  const currentWindMph = windMph;
+  const currentWindDirection = windDirection;
   const currentIcon = icon;
 
   return {
-    currentCondition,
+    currentCity,
+    currentDateTime,
     currentTempC,
     currentTempF,
-    currentHumidity,
-    currentWindMph,
+    currentFeelsLikeC,
+    currentFeelsLikeF,
+    currentHighC,
+    currentLowC,
+    currentHighF,
+    currentLowF,
     currentSunrise,
     currentSunset,
-    currentChanceRain,
     currentMoon,
+    currentCondition,
+    currentChanceRain,
+    currentHumidity,
+    currentWindMph,
+    currentWindDirection,
     currentIcon,
   };
 };
@@ -44,29 +71,46 @@ const Weather = (
 // creates and returns weatherData object with that info from Weather factory function
 const parseWeather = async (query) => {
   const weatherPackage = await getWeather(query);
-  console.log(weatherPackage);
 
-  const condition = weatherPackage.current.condition.text;
+  const city = weatherPackage.location.name;
+  const dateTime = weatherPackage.location.localtime;
   const tempC = weatherPackage.current.temp_c;
   const tempF = weatherPackage.current.temp_f;
+  const feelsLikeC = weatherPackage.current.feelslike_c;
+  const feelsLikeF = weatherPackage.current.feelslike_f;
+  const highC = weatherPackage.forecast.forecastday[0].day.maxtemp_c;
+  const lowC = weatherPackage.forecast.forecastday[0].day.mintemp_c;
+  const highF = weatherPackage.forecast.forecastday[0].day.maxtemp_f;
+  const lowF = weatherPackage.forecast.forecastday[0].day.mintemp_f;
+  const sunrise = weatherPackage.forecast.forecastday[0].astro.sunrise;
+  const sunset = weatherPackage.forecast.forecastday[0].astro.sunset;
+  const moon = weatherPackage.forecast.forecastday[0].astro.moon_phase;
+  const condition = weatherPackage.current.condition.text;
+  const chanceRain = weatherPackage.forecast.forecastday[0].day.daily_chance_of_rain;
   const { humidity } = weatherPackage.current;
   const windMph = weatherPackage.current.wind_mph;
-  const { sunrise } = weatherPackage.forecast.forecastday[0].astro;
-  const { sunset } = weatherPackage.forecast.forecastday[0].astro;
-  const chanceRain = weatherPackage.forecast.forecastday[0].day.daily_chance_of_rain;
-  const moon = weatherPackage.forecast.forecastday[0].astro.moon_phase;
+  const windDirection = weatherPackage.current.wind_dir;
   const { icon } = weatherPackage.current.condition;
 
   const weatherData = Weather(
-    condition,
+    city,
+    dateTime,
     tempC,
     tempF,
-    humidity,
-    windMph,
+    feelsLikeC,
+    feelsLikeF,
+    highC,
+    lowC,
+    highF,
+    lowF,
     sunrise,
     sunset,
-    chanceRain,
     moon,
+    condition,
+    chanceRain,
+    humidity,
+    windMph,
+    windDirection,
     icon,
   );
 
