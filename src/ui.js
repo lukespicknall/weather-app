@@ -1,5 +1,7 @@
 import parseWeather from "./assign";
 
+const content = document.getElementById("content");
+
 // const searchBox = document.getElementById('search-box')
 const searchField = document.getElementById("search-field");
 const searchSubmit = document.getElementById("search-submit");
@@ -9,7 +11,7 @@ const load = () => {
     e.preventDefault();
     const query = searchField.value;
     const weatherData = await parseWeather(query);
-    console.log(weatherData);
+    content.appendChild(weatherData)
   };
 };
 
