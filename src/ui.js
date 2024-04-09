@@ -60,7 +60,6 @@ const load = () => {
     todayWindDirection.textContent = currentWindDirection;
 
     today.className = 'visible';
-    
   };
 };
 
