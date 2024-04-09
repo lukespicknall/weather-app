@@ -82,8 +82,8 @@ const parseWeather = async (query) => {
   const lowC = weatherPackage.forecast.forecastday[0].day.mintemp_c;
   const highF = weatherPackage.forecast.forecastday[0].day.maxtemp_f;
   const lowF = weatherPackage.forecast.forecastday[0].day.mintemp_f;
-  const sunrise = weatherPackage.forecast.forecastday[0].astro.sunrise;
-  const sunset = weatherPackage.forecast.forecastday[0].astro.sunset;
+  const { sunrise } = weatherPackage.forecast.forecastday[0].astro;
+  const { sunset } = weatherPackage.forecast.forecastday[0].astro;
   const moon = weatherPackage.forecast.forecastday[0].astro.moon_phase;
   const condition = weatherPackage.current.condition.text;
   const chanceRain = weatherPackage.forecast.forecastday[0].day.daily_chance_of_rain;

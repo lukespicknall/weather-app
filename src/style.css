@@ -3,75 +3,241 @@
     padding: 0;
 }
 
-#content {
+html, body {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+ }
+
+#content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+}
+
+#search-box {
+
+}
+
+#search-field {
+    font-size: 25px;
+    padding: 10px 15px 10px 15px;
+    border: solid 2px rgb(175, 182, 182);
+    border-radius: 20px;
+}
+
+#search-submit {
+    font-size: 20px;
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 0 8px;
+    border: 2px solid rgb(218, 126, 46);
+    border-radius: 25px;
+
 }
 
 #weather-box {
-
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 20px;
 }
 
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: grid;
+}
+
+/* Today Section */
 #today {
+    grid-template-areas: 
+    "today-head today-head"
+    "today-summary today-details";
+    width: 400px;
+    height: 450px;
+    grid-template-rows: 100px 350px;
+    grid-template-columns: 2fr 3fr;
 
 }
 
+/* HEADER */
 #today-head {
-
+    background-color: rgb(177, 226, 235);
+    grid-area: today-head;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px 25px 0 0;
 }
 
 #city{
-
+    font-size:  50px;
+    padding: 8px
 }
 
 #date-time {
-
+    font-size: 18px;
 }
 
+/* SUMMARY */
 #today-summary {
+    grid-area: today-summary;
+    display: grid;
+    grid-template-areas:
+    "icon-box icon-box"
+    "temp-box temp-box"
+    "feelslike-box feelslike-box"
+    "rise-box rise-box"
+    "set-box set-box"
+    "moon-box moon-box"
+    ;
+    grid-template-rows: 90px 50px 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
+    gap: 8px;
+}
 
+.summary-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#today-icon-box {
+    grid-area: icon-box;
+}
+
+#today-icon {
+    width: 90px;
+    padding: -10px 0 -10px 0
+}
+
+#today-temp-box{
+    grid-area: temp-box;
 }
 
 #today-temp {
+    font-size: 45px;
+}
+
+#today-feelslike-box {
+grid-area: feelslike-box;
+}
+
+#today-feelslike {
 
 }
 
-#today-feels-like {
-
+#today-high-box {
+grid-area: high-box;
 }
 
 #today-high {
 
 }
 
+#today-low-box {
+grid-area: low-box;
+}
+
 #today-low {
 
+}
+
+#today-rise-box {
+grid-area: rise-box;
 }
 
 #today-rise {
 
 }
 
-#today-details {
+#today-set-box {
+grid-area: set-box;
+}
 
+#today-set {
+
+}
+
+#today-moon-box {
+grid-area: moon-box;
+}
+
+#today-moon {
+
+}
+
+
+/* Details Section */
+#today-details {
+    grid-area: today-details;
+    display: grid;
+    grid-template-areas:
+    "condition-box condition-box"
+    "high-box low-box"
+    "rain-box humidity-box"
+    "windspeed-box winddirection-box"
+    ;
+    grid-template-rows: 50x 1fr 1fr 1fr 1fr;
+
+}
+
+.details-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#today-condition-box {
+grid-area: condition-box;
 }
 
 #today-condition {
 
 }
 
+#today-rain-box {
+grid-area: rain-box;
+}
+
 #today-rain {
 
+}
+
+#today-humidity-box {
+grid-area: humidity-box;
 }
 
 #today-humidity {
 
 }
 
-#today-wind-speed {
+#today-windspeed-box {
+grid-area: windspeed-box;
+}
+
+#today-windspeed {
 
 }
 
-#today-wind-direction {
+#today-winddirection-box {
+grid-area: winddirection-box;
+}
+
+#today-winddirection {
 
 }
