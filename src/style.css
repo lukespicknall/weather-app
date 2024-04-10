@@ -11,6 +11,7 @@ html, body {
 
 #content {
     height: 100%;
+    min-width: 421px;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
@@ -19,12 +20,28 @@ html, body {
 #header {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    height: 100px;
+    gap: 3px;
+}
+
+#logo-box {
+    display: flex;
     justify-content: center;
-    height: 125px;
+    align-items: center;
+    gap: 10px;
+}
+
+#gust-logo {
+    height: 60px;
+}
+
+#gust-text {
+    font-size: 28px;
 }
 
 #search-box {
-
+    white-space: nowrap;
 }
 
 #search-field {
@@ -32,18 +49,68 @@ html, body {
     padding: 10px 15px 10px 15px;
     border: solid 2px rgb(175, 182, 182);
     border-radius: 20px;
+    width: clamp(10px, 76%, 322px);
 }
 
 #search-submit {
-    font-size: 20px;
+    font-size: 21px;
     background-color: white;
-    padding: 10px;
+    padding: 12px;
     margin: 0 0 0 8px;
-    border: 2px solid rgb(218, 126, 46);
-    border-radius: 25px;
-
+    border: 2px solid rgb(245, 140, 54);
+    border-radius: 30px;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
+#search-submit:hover {
+    background-color: rgb(245, 140, 54);
+    border: 2px solid black;
+    color: white;
+    border-radius: 15px;
+}
+
+#metric {
+    display: flex;
+    justify-content: center;
+    width: 126.48px;
+    box-sizing: border-box;
+}
+
+#metric-switch {
+    font-size: 21px;
+    background-color: white;
+    padding: 12px;
+    margin: 0 0 0 8px;
+    border: 2px solid rgb(54, 130, 245);
+     border-radius: 15px;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+#metric-switch:hover {
+    background-color: rgb(54, 130, 245);
+    border: 2px solid black;
+    color: white;
+
+       border-radius: 30px;
+}
+
+/* OVERLAY */
+#overlay {
+    height: 100%;
+}
+
+#overlay-gust-logo {
+    width: 300px;
+}
+
+#overlay-gust-text {
+    font-size: 28px;
+}
+
+/* WEATHER BOX */
 #weather-box {
     display: flex;
     flex-grow: 1;
@@ -59,16 +126,26 @@ html, body {
     display: grid;
 }
 
+.overlay-visible{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* flex-grow: 1; */
+}
+
 /* Today Section */
 #today {
     grid-template-areas: 
-    "today-head today-head"
-    "today-summary today-details";
+    "today-head"
+    "today-weather";
     width: 400px;
-    height: 450px;
-    grid-template-rows: 100px 350px;
-    grid-template-columns: 2fr 3fr;
-
+    width: clamp(381px, 450px, 500px);
+    height: 500px;
+    grid-template-rows: 100px 400px;
+    /* grid-template-columns: 2fr 3fr; */
+    border-radius: 25px 25px 10px 10px;
+    box-shadow: 20px 20px 28px 4px rgb(146, 146, 146);
 }
 
 /* HEADER */
@@ -83,7 +160,7 @@ html, body {
 }
 
 #city{
-    font-size:  50px;
+    font-size:  35px;
     padding: 8px
 }
 
@@ -91,21 +168,33 @@ html, body {
     font-size: 18px;
 }
 
+#today-weather {
+    grid-area: today-weather;
+    display: grid;
+    grid-template-areas: 
+    "today-summary today-details";
+    grid-template-columns: 2fr 3fr;
+    height: 100%;
+    width: 100%;
+    padding: 0 5px 25px 0;
+    box-sizing: border-box;
+}
+
 /* SUMMARY */
 #today-summary {
     grid-area: today-summary;
     display: grid;
     grid-template-areas:
-    "icon-box icon-box"
-    "temp-box temp-box"
-    "feelslike-box feelslike-box"
-    "rise-box rise-box"
-    "set-box set-box"
-    "moon-box moon-box"
+    "icon-box"
+    "temp-box"
+    "feelslike-box"
+    "rise-box"
+    "set-box"
+    "moon-box"
     ;
     grid-template-rows: 90px 50px 1fr 1fr 1fr 1fr;
-    grid-template-columns: 2fr 3fr;
-    gap: 8px;
+    /* grid-template-columns: 2fr 3fr; */
+    gap: 0 4px 4px 4px 4px,
 }
 
 .summary-box {
@@ -113,6 +202,11 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4px;
+}
+
+.summary-label {
+    font-weight: bold;
 }
 
 #today-icon-box {
@@ -192,6 +286,7 @@ grid-area: moon-box;
     "windspeed-box winddirection-box"
     ;
     grid-template-rows: 50x 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
 }
 
@@ -200,10 +295,16 @@ grid-area: moon-box;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
+}
+
+.details-label {
+    font-weight: bold;
 }
 
 #today-condition-box {
 grid-area: condition-box;
+font-size: 19px;
 }
 
 #today-condition {

@@ -3,6 +3,8 @@ import parseWeather from './assign';
 // const searchBox = document.getElementById('search-box')
 const searchField = document.getElementById('search-field');
 const searchSubmit = document.getElementById('search-submit');
+const overlay = document.getElementById('overlay');
+const overlayText = document.getElementById('overlay-gust-text');
 const today = document.getElementById('today');
 
 const load = () => {
@@ -24,6 +26,9 @@ const load = () => {
 
   searchSubmit.onclick = async (e) => {
     e.preventDefault();
+    overlay.className = 'overlay-visible';
+    overlayText.textContent = 'loading ...';
+    today.className = 'hidden';
     const query = searchField.value;
     const weatherData = await parseWeather(query);
 
@@ -58,7 +63,7 @@ const load = () => {
     todayHumidity.textContent = `${currentHumidity}%`;
     todayWindMph.textContent = `${currentWindMph} mph`;
     todayWindDirection.textContent = currentWindDirection;
-
+    overlay.className = 'hidden';
     today.className = 'visible';
   };
 };
