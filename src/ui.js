@@ -1,4 +1,5 @@
 import parseWeather from './assign';
+import gustlogo from './images/gust-logo2.png';
 
 // const searchBox = document.getElementById('search-box')
 const searchField = document.getElementById('search-field');
@@ -6,8 +7,23 @@ const searchSubmit = document.getElementById('search-submit');
 const overlay = document.getElementById('overlay');
 const overlayText = document.getElementById('overlay-gust-text');
 const today = document.getElementById('today');
+const gustLogo = document.getElementById('gust-logo');
+const overlayGustLogo = document.getElementById('overlay-gust-logo');
+const metricSwitch = document.getElementById('metric-switch');
+
+// metric value holder
+let currentMetric = 'F';
+
+// updates current metric after switch
+const switchMetric = (a) => {
+  currentMetric = a;
+};
 
 const load = () => {
+  // assign images
+  gustLogo.src = gustlogo;
+  overlayGustLogo.src = gustlogo;
+
   const city = document.getElementById('city');
   const datetime = document.getElementById('date-time');
   const todayTemp = document.getElementById('today-temp');
@@ -24,20 +40,20 @@ const load = () => {
   const todayWindDirection = document.getElementById('today-winddirection');
   const todayIcon = document.getElementById('today-icon');
 
-  searchSubmit.onclick = async (e) => {
-    e.preventDefault();
-    overlay.className = 'overlay-visible';
-    overlayText.textContent = 'loading ...';
-    today.className = 'hidden';
+  const assignData = async () => {
     const query = searchField.value;
     const weatherData = await parseWeather(query);
 
     const { currentCity } = weatherData;
     const { currentDateTime } = weatherData;
-    const currentTemp = weatherData.currentTempF;
-    const currentFeelsLike = weatherData.currentFeelsLikeF;
-    const currentHigh = weatherData.currentHighF;
-    const currentLow = weatherData.currentLowF;
+    const { currentTempF } = weatherData;
+    const { currentFeelsLikeF } = weatherData;
+    const { currentHighF } = weatherData;
+    const { currentLowF } = weatherData;
+    const { currentTempC } = weatherData;
+    const { currentFeelsLikeC } = weatherData;
+    const { currentHighC } = weatherData;
+    const { currentLowC } = weatherData;
     const currentRise = weatherData.currentSunrise;
     const currentSet = weatherData.currentSunset;
     const { currentMoon } = weatherData;
@@ -51,10 +67,18 @@ const load = () => {
     city.textContent = currentCity;
     datetime.textContent = currentDateTime;
     todayIcon.src = currentIcon;
-    todayTemp.textContent = `${currentTemp}\u00B0F`;
-    todayFeelsLike.textContent = `${currentFeelsLike}\u00B0F`;
-    todayHigh.textContent = `${currentHigh}\u00B0F`;
-    todayLow.textContent = `${currentLow}\u00B0F`;
+    // conditional to keep current metric on new searches
+    if (currentMetric === 'F') {
+      todayTemp.textContent = `${currentTempF}\u00B0F`;
+      todayFeelsLike.textContent = `${currentFeelsLikeF}\u00B0F`;
+      todayHigh.textContent = `${currentHighF}\u00B0F`;
+      todayLow.textContent = `${currentLowF}\u00B0F`;
+    } else if (currentMetric === 'C') {
+      todayTemp.textContent = `${currentTempC}\u00B0C`;
+      todayFeelsLike.textContent = `${currentFeelsLikeC}\u00B0C`;
+      todayHigh.textContent = `${currentHighC}\u00B0C`;
+      todayLow.textContent = `${currentLowC}\u00B0C`;
+    }
     todayRise.textContent = currentRise;
     todaySet.textContent = currentSet;
     todayMoon.textContent = currentMoon;
@@ -65,6 +89,48 @@ const load = () => {
     todayWindDirection.textContent = currentWindDirection;
     overlay.className = 'hidden';
     today.className = 'visible';
+
+    return {
+      currentTempF,
+      currentFeelsLikeF,
+      currentHighF,
+      currentLowF,
+      currentTempC,
+      currentFeelsLikeC,
+      currentHighC,
+      currentLowC,
+    };
+  };
+
+  // runs assignData and populates data
+  searchSubmit.onclick = async (e) => {
+    e.preventDefault();
+    if (searchField.value !== '') {
+      overlay.className = 'overlay-visible';
+      overlayText.textContent = 'loading ...';
+      today.className = 'hidden';
+      assignData();
+    }
+  };
+
+  // changes metric reading based on current metric
+  metricSwitch.onclick = async () => {
+    if (today.className === 'visible') {
+      const currentData = assignData();
+      if (currentMetric === 'F') {
+        todayTemp.textContent = `${(await currentData).currentTempC}\u00B0C`;
+        todayFeelsLike.textContent = `${(await currentData).currentFeelsLikeC}\u00B0C`;
+        todayHigh.textContent = `${(await currentData).currentHighC}\u00B0C`;
+        todayLow.textContent = `${(await currentData).currentLowC}\u00B0C`;
+        switchMetric('C');
+      } else if (currentMetric === 'C') {
+        todayTemp.textContent = `${(await currentData).currentTempF}\u00B0F`;
+        todayFeelsLike.textContent = `${(await currentData).currentFeelsLikeF}\u00B0F`;
+        todayHigh.textContent = `${(await currentData).currentHighF}\u00B0F`;
+        todayLow.textContent = `${(await currentData).currentLowF}\u00B0F`;
+        switchMetric('F');
+      }
+    }
   };
 };
 
