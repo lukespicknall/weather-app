@@ -6,10 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "watch": "webpack  --watch"
+    "watch": "webpack  --watch",
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukespicknall/weather-app.git"
+  },
+  "homepage": "https://github.com/lukespicknall/weather-app#readme",
   "devDependencies": {
     "css-loader": "^6.9.1",
     "eslint": "^8.56.0",
