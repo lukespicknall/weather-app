@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <title>Gust</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="content">
+      <div id="header">
+        <div id="logo-box">
+          <img src="../src/images/gust-logo2.png" id="gust-logo" />
+          <div id="gust-text">gust</div>
+        </div>
+        <div id="search-box">
+          <form action="" method="post">
+            <label for="search-field"></label>
+            <input
+              type="text"
+              name="search-field"
+              id="search-field"
+              placeholder="Enter location or zipcode"
+            />
+            <input type="submit" value="go!" id="search-submit" />
+          </form>
+        </div>
+        <div id="metric">
+          <button id="metric-switch">c / F</button>
+        </div>
+      </div>
+      <div id="weather-box">
+        <div id="overlay" class="overlay-visible">
+        <img src="../src/images/gust-logo2.png" id="overlay-gust-logo" />
+        <div id="overlay-gust-text">gust weather</div>
+      </div>
+        <div id="today" class="hidden">
+          <div id="today-head">
+            <div id="city"></div>
+            <div id="date-time"></div>
+          </div>
+          <div id="today-weather">
+            <div id="today-summary">
+              <div id="today-icon-box" class="summary-box">
+                <img id="today-icon" />
+              </div>
+              <div id="today-temp-box" class="summary-box">
+                <div id="today-temp"></div>
+              </div>
+              <div id="today-feelslike-box" class="summary-box">
+                <div id="today-feelslike-label" class="summary-label">
+                  Feels like
+                </div>
+                <div id="today-feelslike"></div>
+              </div>
+              <div id="today-rise-box" class="summary-box">
+                <div id="today-rise-label" class="summary-label">Sunrise</div>
+                <div id="today-rise"></div>
+              </div>
+              <div id="today-set-box" class="summary-box">
+                <div id="today-set-label" class="summary-label">Sunset</div>
+                <div id="today-set"></div>
+              </div>
+              <div id="today-moon-box" class="summary-box">
+                <div id="toda-moon-label" class="summary-label">Moon phase</div>
+                <div id="today-moon"></div>
+              </div>
+            </div>
+            <div id="today-details">
+              <div id="today-condition-box" class="details-box">
+                <div id="today-condition-label" class="details-label">
+                  Current conditions:
+                </div>
+                <div id="today-condition"></div>
+              </div>
+              <div id="today-high-box" class="details-box">
+                <div id="today-high-label" class="details-label">High</div>
+                <div id="today-high"></div>
+              </div>
+              <div id="today-low-box" class="details-box">
+                <div id="today-low-label" class="details-label">Low</div>
+                <div id="today-low"></div>
+              </div>
+              <div id="today-rain-box" class="details-box">
+                <div id="today-rain-label" class="details-label">
+                  Chain of rain
+                </div>
+                <div id="today-rain"></div>
+              </div>
+              <div id="today-humidity-box" class="details-box">
+                <div id="today-humidity-label" class="details-label">
+                  Humiditiy
+                </div>
+                <div id="today-humidity"></div>
+              </div>
+              <div id="today-windspeed-box" class="details-box">
+                <div id="today-windspeed-label" class="details-label">
+                  Wind speed
+                </div>
+                <div id="today-windspeed"></div>
+              </div>
+              <div id="today-winddirection-box" class="details-box">
+                <div id="today-winddirection-label" class="details-label">
+                  Wind direction
+                </div>
+                <div id="today-winddirection"></div>
+              </div>
+            </div>
+          </div>
+          <!-- <div id="three-day"></div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
