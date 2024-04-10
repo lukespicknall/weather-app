@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/style.css" />
     <title>Gust</title>
-  <script defer src="main.js"></script></head>
+  <link rel="icon" href="assets/favicon.png"><script defer src="main.js"></script></head>
   <body>
     <div id="content">
       <div id="header">
         <div id="logo-box">
-          <img src="../src/images/gust-logo2.png" id="gust-logo" />
+          <img id="gust-logo" />
           <div id="gust-text">gust</div>
         </div>
         <div id="search-box">
@@ -22,17 +21,18 @@
               name="search-field"
               id="search-field"
               placeholder="Enter location or zipcode"
+              required
             />
             <input type="submit" value="go!" id="search-submit" />
           </form>
         </div>
         <div id="metric">
-          <button id="metric-switch">c / F</button>
+          <button id="metric-switch">C / F</button>
         </div>
       </div>
       <div id="weather-box">
         <div id="overlay" class="overlay-visible">
-        <img src="../src/images/gust-logo2.png" id="overlay-gust-logo" />
+        <img id="overlay-gust-logo" />
         <div id="overlay-gust-text">gust weather</div>
       </div>
         <div id="today" class="hidden">
