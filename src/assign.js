@@ -70,7 +70,9 @@ const Weather = (
 // takes the weather package it recieves from api, pulls the data we are interested in
 // creates and returns weatherData object with that info from Weather factory function
 const parseWeather = async (query) => {
-  const weatherPackage = await getWeather(query);
+  const weatherPackage = await getWeather(query).catch((err) => {
+    console.log(err);
+  });
 
   const city = weatherPackage.location.name;
   const dateTime = weatherPackage.location.localtime;

@@ -11,7 +11,7 @@ html, body {
 
 #content {
     height: 100%;
-    min-width: 421px;
+    min-width: 420px;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
@@ -30,6 +30,7 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin: 0 8px 0 0;
 }
 
 #gust-logo {
@@ -76,13 +77,13 @@ html, body {
     justify-content: center;
     width: 126.48px;
     box-sizing: border-box;
+    margin: 0 0 0 8px;
 }
 
 #metric-switch {
     font-size: 21px;
     background-color: white;
     padding: 12px;
-    margin: 0 0 0 8px;
     border: 2px solid rgb(54, 130, 245);
      border-radius: 15px;
     transition: all ease-in-out 0.2s;
@@ -93,7 +94,6 @@ html, body {
     background-color: rgb(54, 130, 245);
     border: 2px solid black;
     color: white;
-
        border-radius: 30px;
 }
 
@@ -139,7 +139,7 @@ html, body {
     grid-template-areas: 
     "today-head"
     "today-weather";
-    width: 400px;
+    width: 375px;
     width: clamp(381px, 450px, 500px);
     height: 500px;
     grid-template-rows: 100px 400px;
@@ -341,4 +341,34 @@ grid-area: winddirection-box;
 
 #today-winddirection {
 
+}
+
+@media (max-width: 620px) {
+    #header { 
+        display: grid;
+        grid-template-areas: 
+        "logo-box logo-box"
+        "search-box metric";
+        padding: 0 10px 0 10px;
+        
+    }
+
+    #logo-box{
+        grid-area: logo-box;
+    }
+
+    #search-box{
+    grid-area: search-box;
+    }
+
+    #search-field {
+    width: clamp(150px, 65%, 300px);
+    }
+
+    #metric {
+    grid-area: metric;
+    margin: 0 0 0 8px;
+    width: 75px;
+    height: 52px;
+    }
 }

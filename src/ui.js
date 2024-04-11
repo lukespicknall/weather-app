@@ -42,7 +42,9 @@ const load = () => {
 
   const assignData = async () => {
     const query = searchField.value;
-    const weatherData = await parseWeather(query);
+    const weatherData = await parseWeather(query).catch((err) => {
+      console.log(err);
+    });
 
     const { currentCity } = weatherData;
     const { currentDateTime } = weatherData;
@@ -109,7 +111,10 @@ const load = () => {
       overlay.className = 'overlay-visible';
       overlayText.textContent = 'loading ...';
       today.className = 'hidden';
-      assignData();
+      assignData().catch((err) => {
+        overlayText.textContent = 'We could not find that location!';
+        console.log(err);
+      });
     }
   };
 
@@ -119,13 +124,17 @@ const load = () => {
       const currentData = assignData();
       if (currentMetric === 'F') {
         todayTemp.textContent = `${(await currentData).currentTempC}\u00B0C`;
-        todayFeelsLike.textContent = `${(await currentData).currentFeelsLikeC}\u00B0C`;
+        todayFeelsLike.textContent = `${
+          (await currentData).currentFeelsLikeC
+        }\u00B0C`;
         todayHigh.textContent = `${(await currentData).currentHighC}\u00B0C`;
         todayLow.textContent = `${(await currentData).currentLowC}\u00B0C`;
         switchMetric('C');
       } else if (currentMetric === 'C') {
         todayTemp.textContent = `${(await currentData).currentTempF}\u00B0F`;
-        todayFeelsLike.textContent = `${(await currentData).currentFeelsLikeF}\u00B0F`;
+        todayFeelsLike.textContent = `${
+          (await currentData).currentFeelsLikeF
+        }\u00B0F`;
         todayHigh.textContent = `${(await currentData).currentHighF}\u00B0F`;
         todayLow.textContent = `${(await currentData).currentLowF}\u00B0F`;
         switchMetric('F');
