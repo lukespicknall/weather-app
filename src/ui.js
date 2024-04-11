@@ -24,6 +24,7 @@ const load = () => {
   gustLogo.src = gustlogo;
   overlayGustLogo.src = gustlogo;
 
+  // grab DOM css hooks
   const city = document.getElementById('city');
   const datetime = document.getElementById('date-time');
   const todayTemp = document.getElementById('today-temp');
@@ -40,12 +41,16 @@ const load = () => {
   const todayWindDirection = document.getElementById('today-winddirection');
   const todayIcon = document.getElementById('today-icon');
 
+  // run parse weather passing search-filed value as query param
+  // if fails, catch error
   const assignData = async () => {
     const query = searchField.value;
     const weatherData = await parseWeather(query).catch((err) => {
       console.log(err);
     });
 
+    // pull relevant weather data from fetch into variables.
+    // alot of these use destructing method at esLint reccomendation
     const { currentCity } = weatherData;
     const { currentDateTime } = weatherData;
     const { currentTempF } = weatherData;
@@ -69,6 +74,7 @@ const load = () => {
     city.textContent = currentCity;
     datetime.textContent = currentDateTime;
     todayIcon.src = currentIcon;
+
     // conditional to keep current metric on new searches
     if (currentMetric === 'F') {
       todayTemp.textContent = `${currentTempF}\u00B0F`;
@@ -81,6 +87,8 @@ const load = () => {
       todayHigh.textContent = `${currentHighC}\u00B0C`;
       todayLow.textContent = `${currentLowC}\u00B0C`;
     }
+
+    // make the DOM elements show weather data
     todayRise.textContent = currentRise;
     todaySet.textContent = currentSet;
     todayMoon.textContent = currentMoon;
